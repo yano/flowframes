@@ -1,3 +1,21 @@
+# Flowframes Custom Ver 1.36.0 by yano
+
+This custom flowframes can convert png image senquence to interpolated ping image sequence.
+
+## Recommended setup
+- ai : RIFE (NCNN)
+- model : RIFE 4.6
+- output : Image Sequence
+
+## Batch command example
+```
+C:\(your-path)\Flowframes.exe %CD%\in -start -quit-when-done -factor=2 -ai=1 -output-mode=6 -model=4
+```
+
+## Screemshot
+![Alt text](image.png)
+
+
 # Flowframes - Windows GUI for Video Interpolation
 
 ## [itch.io (Free Old Builds)](https://nmkd.itch.io/flowframes) | [Patreon (Latest Builds)](https://www.patreon.com/n00mkrad) | [Discord](https://discord.com/invite/eJHD2NSJRe)

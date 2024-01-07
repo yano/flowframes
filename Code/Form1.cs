@@ -95,6 +95,12 @@ namespace Flowframes
 
         void HandleArgs()
         {
+            //★修正
+            //if (Program.fileArgs.Length > 0)
+            //    DragDropHandler(Program.fileArgs.Where(x => IoUtils.IsFileValid(x)).ToArray());
+            if (Program.fileArgs.Length > 0)
+                DragDropHandler(Program.fileArgs.Where(x => IoUtils.IsDirValid(x)).ToArray());            
+
             foreach (string arg in Program.args)
             {
                 if (arg.StartsWith("out="))
@@ -108,6 +114,9 @@ namespace Flowframes
                     if (factor == 8) interpFactorCombox.SelectedIndex = 2;
                 }
 
+                //★新規追加
+                fpsInTbox.Text = "15"; //設定するとUpdateUiFpsが呼ばれる
+
                 if (arg.StartsWith("ai="))
                     aiCombox.SelectedIndex = arg.Split('=').Last().GetInt();
 
@@ -117,10 +126,6 @@ namespace Flowframes
                 if (arg.StartsWith("output-mode="))
                     outModeCombox.SelectedIndex = arg.Split('=').Last().GetInt();
             }
-
-            if (Program.fileArgs.Length > 0)
-                DragDropHandler(Program.fileArgs.Where(x => IoUtils.IsFileValid(x)).ToArray());
-
         }
 
         void UnlockInterpFactorIfEnabled()
@@ -511,6 +516,9 @@ namespace Flowframes
 
             if (files.Length > 1)
             {
+                //★新規追加
+                SetTab(interpOptsTab.Name);
+
                 queueBtn_Click(null, null);
                 if (BatchProcessing.currentBatchForm != null)
                     BatchProcessing.currentBatchForm.LoadDroppedPaths(files, start);

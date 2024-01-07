@@ -42,7 +42,12 @@ namespace Flowframes
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
             Task.Run(() => DiskSpaceCheckLoop());
-            fileArgs = Environment.GetCommandLineArgs().Where(a => a[0] != '-' && File.Exists(a)).ToList().Skip(1).ToArray();
+
+            //★コメントアウト
+            //fileArgs = Environment.GetCommandLineArgs().Where(a => a[0] != '-' && File.Exists(a)).ToList().Skip(1).ToArray();
+            //★追加
+            fileArgs = Environment.GetCommandLineArgs().Where(a => a[0] != '-' && Directory.Exists(a)).ToArray();
+
             args = Environment.GetCommandLineArgs().Where(a => a[0] == '-').Select(x => x.Trim().Substring(1).ToLowerInvariant()).ToArray();
             Logger.Log($"Command Line: {Environment.CommandLine}", true);
             Logger.Log($"Files: {(fileArgs.Length > 0 ? string.Join(", ", fileArgs) : "None")}", true);
